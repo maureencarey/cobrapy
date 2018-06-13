@@ -163,6 +163,10 @@ class Model(Object):
         return {met.compartment for met in self.metabolites
                 if met.compartment is not None}
 
+    def get_metabolites_in_compartment(self, compartment):
+        """Return all metabolites in a specific compartment."""
+        return {m for m in self.metabolites if m.compartment is compartment}
+
     @property
     def compartments(self):
         for met in self.metabolites:

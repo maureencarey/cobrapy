@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 
+"""Provide a class for compartments."""
+
 from __future__ import absolute_import
 
 from copy import deepcopy
-from cobra.util.util import format_long_string
+from cobra.util import format_long_string
 
 from cobra.core.object import Object
 
@@ -20,7 +22,10 @@ class Compartment(Object):
            A human readable name.
         """
     def __init__(self, id=None, name=""):
-        Object.__init__(self, id, name)
+        super(Compartment, self).__init__(id=id, name=name)
+
+    def __contains__(self, metabolite):
+        return metabolite.compartment is self
 
     def copy(self):
         return deepcopy(self)
